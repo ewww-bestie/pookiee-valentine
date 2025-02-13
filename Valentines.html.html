@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💖</title>
+    <style>
+        body {
+            text-align: center;
+            background: #fce4ec;
+            font-family: 'Playfair Display', serif;
+            color: #6b4e4e;
+            overflow: hidden;
+        }
+        .heart-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .big-heart {
+            font-size: 1.8rem;
+            padding: 15px;
+            border-radius: 50px;
+            background: #f8bbd0;
+            box-shadow: 0 0 15px #d81b60;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: none;
+            font-family: 'Playfair Display', serif;
+        }
+        .big-heart:hover {
+            transform: scale(1.1);
+        }
+        .no-button {
+            font-size: 1rem;
+            padding: 8px;
+            margin-top: 10px;
+            background: white;
+            color: #6b4e4e;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 1px solid #6b4e4e;
+        }
+        .hidden { display: none; }
+        .icon-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .icon {
+            padding: 15px;
+            background: #f8bbd0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 0 10px #d81b60;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f5e1da;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #d81b60;
+            width: 60%;
+            font-family: cursive;
+        }
+        .close-btn {
+            margin-top: 10px;
+            background: #d81b60;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<audio id="backgroundMusic" autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<button onclick="toggleMusic()">🎶 Play/Pause Music</button>
+
+<div id = "content">
+    <div class="heart-bg">
+        <h1>Will you be my Valentine? 💘</h1>
+        <button id="yesBtn" class="big-heart">YES 💖</button>
+        <button id="noBtn" class="no-button">No...</button>
+    </div>
+</div>
+ <script>
+        function toggleMusic() {
+            let music = document.getElementById("backgroundMusic");
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+    
+        let noClicks = 0;
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        
+        noBtn.addEventListener('click', function() {
+            noClicks++;
+            yesBtn.style.fontSize = `${1.8 + noClicks * 1.2}rem`;
+            if (noClicks >= 3) {
+                noBtn.innerText = "Pleeeaaase pookiee?";
+            }
+            if (noClicks >= 5) {
+                noBtn.classList.add('hidden');
+            }
+        });
+        
+        yesBtn.addEventListener('click', function() {
+            document.body.innerHTML = `
+                <h1>YIPEEE! I knew you would say YES, my pookiebearrr! 💕</h1>
+                 <h2>I love you sooo muchhhieeee my poookiebearrr! You mean the world to meee teeeheee!</h2>
+                <p>I saw my babe first on 4th of July , 2022...</p>
+                <h3 id="countdown"></h3>
+                <p>Counting still... I'll always love you, Bibhu <3</p>
+                        
+                            <div class='icon-container'>
+                    <div class='icon' onclick='showModal("wheelModal")'>🎡 Spin Date Wheel</div>
+                    <div class='icon' onclick='showModal("scratchModal")'>💌 Scratch Love Coupon</div>
+                    <div class='icon' onclick='showModal("letterModal")'>📜 Open Love Letter</div>
+                </div>
+
+                <div id='wheelModal' class='modal'>
+                    <p>Random Date Idea: <span id="wheelResult">Click to spin!</span></p>
+                    <button onclick="spinWheel()">Spin</button>
+                    <button class="close-btn" onclick='closeModal("wheelModal")'>Close</button>
+                </div>
+                <div id='scratchModal' class='modal'>
+                    <p id="couponResult">Scratch here!</p>
+                    <button onclick="revealMessage()">Scratch</button>
+                    <button class="close-btn" onclick='closeModal("scratchModal")'>Close</button>
+                </div>
+                <div id='letterModal' class='modal'>
+                    <p>Jab pehli dafa tumhe dekha tha,
+jaise shaam ki roshni se milti subah ka waada tha.Hawa bhi ruki, waqt bhi tham gaya,
+tumhari muskurahat ne mujhe aashiq bana diya.
+Ab har subah tumhari yaadon ki chaadar odhti hai,
+har shaam tumhari aawaaz ki roshni mein dhalti hai.Ae mere jaane-jahan, tum ho mera noor,
+tum ho meri jeet, tum ho mera suroor.
+Agar chand bhi mitt jaaye, agar suraj bujh jaaye,
+tumhara pyaar rahe, toh andhera bhi saj jaaye.
+Mera mehboob, mera sitara,
+mera sukoon,
+tumhi ho meri rooh ka junoon.
+.           🌷🌸🌷🌸
+         🌸🌷🌸🌷🌸
+      /ᐠ🌷🌸🌷🌸🌷
+   ( ˶ᵔ ᵕ ᵔ🌷🌸🌷
+        🎀 
+since my babyy is learning hindii teehee~
+
+
+</p>
+                    <button class="close-btn" onclick='closeModal("letterModal")'>Close</button>
+                </div>
+            `;
+         function startCountdown(startTime) {
+    function updateCountdown() {
+        let now = new Date().getTime();
+        let timeDiff = now - startTime;
+        let years = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365));
+        let days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        let countdownElement = document.getElementById("countdown");
+        if (countdownElement) {
+            countdownElement.innerHTML = `${years} Years, ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
+        }
+    }
+
+    updateCountdown(); // Run once immediately to avoid delay
+    setInterval(updateCountdown, 1000); // Then update every second
+}
+
+// Start countdown immediately
+startCountdown(new Date("July 4, 2022 09:00:00").getTime());
+});
+
+        function showModal(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function revealMessage() {
+            let messages = ["Bibhu gets 10 kisssiesss right awayy teehee ^_^ !", "A lip to lip for myyy hubby muah muahhh <333 !", "Jyotsna owes her daddy a hug ⸜(｡˃ ᵕ ˂ )⸝♡", "A good huggie pleasieee baby? (´｡• ◡ •｡) ♡","lets cudddleee!my babyy boo ♡〜٩( ˃▿˂ )۶〜♡", "lets look for an elevator daddy ;)" , "we need to find a spot sweetieee heheh;)"," I love you sooo muchhh! (｡^ ‿^♡)"," I'll marry you pookieee (ꈍᴗꈍ)♡"," you're the love of my liffeee ( ̧⸝⸝⍢⸝⸝)ෆ"," A millionnn kisssiesss for my dadddy coming right upp <333 "];
+            document.getElementById('couponResult').innerText = messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        function spinWheel() {
+            let dateIdeas =  [
+                "Strangers Date - Let's spend the next hour as if we just met for the first time! I'll try to catch your eye, and you try to start a conversation... ooo exciting, isn't it babe? Teehee!",
+                "Movie Character Roleplay - Let's pick characters from our favorite movies and act like them on our next date! Will we be star-crossed lovers or a dynamic duo? Let's find out!",
+                "Tea or Coffee Date - No excuses! We drop everything and go out for a sweet tea or coffee date, talking our hearts out like we always do.",
+                "Gift for You - A sweet surprise awaits you! It’s a kiss and a delicious chocolate, just for my baby boo!",
+                "Impromptu Date - Let's go outside for an hour, no planning, just spontaneous fun and love! Anywhere with you is my favorite place!",
+                "Sing/Dance-Off - A little fun challenge for us! We have a sing-off or dance battle to our favorite classic love songs! Who will win? Either way, I get to see my baby smile!",
+                "Secret Surprise - Close your eyes and trust me, something special is coming your way!",
+                "Cuddle Session - We drop everything and just snuggle close, lost in each other’s warmth and love! 💕"
+            ];
+            document.getElementById("wheelResult").innerText = dateIdeas[Math.floor(Math.random() * dateIdeas.length)];
+        }
+    </script>
+</body>
+</html>
